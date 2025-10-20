@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendario</title>
+
+  <link rel="stylesheet" href="/style.css">
+
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/main.min.css" rel="stylesheet">
+
+  <script src="/register.js"></script>
+</head>
+<body class="bg-dark text-light">
+
+  
+
+  <nav class="navbar">
+    <div class="navbar-container">
+      <h1 class="navbar-logo">Home</h1>
+      <ul class="navbar-menu">
+        <li class="navbar-item"><a href="/index.html" class="navbar-link">Inicio</a></li>
+        <li class="navbar-item"><a href="/pages/calendar.html" class="navbar-link">Calendario</a></li>
+        <li class="navbar-item"><a href="/pages/form.html" class="navbar-link">Formulario</a></li>
+        <li class="navbar-item"><a href="/pages/about.html" class="navbar-link active">Sobre mí</a></li>
+      </ul>
+    </div>
+  </nav>
+<h1>📅 Calendario</h1>
+  <div id="calendar" style="max-width: 900px; margin: 40px auto; background: white; color: black; border-radius: 10px; padding: 10px;"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const calendarEl = document.getElementById('calendar');
+
+      // Inicialización del calendario
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        locale: 'es',
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        },
+        events: [
+          { title: 'Clase de PWA', start: '2025-10-10' },
+          { title: 'Entrega de proyecto', start: '2025-10-13' },
+          { title: 'Revisión de código', start: '2025-10-15', end: '2025-10-16' }
+        ]
+      });
+
+      calendar.render();
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/register.js"></script>
+</head>
+<body class="bg-dark text-light">
+
+  <nav class="navbar">
+    <div class="navbar-container">
+      <h1 class="navbar-logo">Home</h1>
+      <ul class="navbar-menu">
+        <li class="navbar-item"><a href="/index.html" class="navbar-link">Inicio</a></li>
+        <li class="navbar-item"><a href="/pages/calendar.html" class="navbar-link">Calendario</a></li>
+        <li class="navbar-item"><a href="/pages/form.html" class="navbar-link active">Formulario</a></li>
+        <li class="navbar-item"><a href="/pages/about.html" class="navbar-link">Sobre mí</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="card">
+      <h2>📝 Envíanos un mensaje</h2>
+      <form id="contactForm" class="formulario">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre...">
+
+        <label for="email">Correo electrónico:</label>
+        <input type="email" id="email" name="email" required placeholder="ejemplo@correo.com">
+
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" name="mensaje" rows="4" required placeholder="Escribe tu mensaje..."></textarea>
+
+        <button type="submit" class="btn-enviar">Enviar</button>
+      </form>
+
+      <p id="mensaje-resultado" class="resultado"></p>
+    </section>
+  </main>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    const msg = document.getElementById('mensaje-resultado');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nombre = document.getElementById('nombre').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const mensaje = document.getElementById('mensaje').value.trim();
+
+      if (!nombre || !email || !mensaje) {
+        msg.textContent = 'Por favor, completa todos los campos.';
+        msg.style.color = 'orange';
+        return;
+      }
+
+      msg.textContent = 'Mensaje enviado correctamente. ¡Gracias, ' + nombre + '!';
+      msg.style.color = 'lightgreen';
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
