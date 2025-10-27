@@ -16,7 +16,8 @@ const DYNAMIC_ASSET_URLS = [
     'https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/main.min.css',
     'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js',
     'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js',
-    'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css'
+    'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css',
+    'https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css',
 ];
 
 self.addEventListener('install', event => {

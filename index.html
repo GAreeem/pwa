@@ -14,21 +14,54 @@
   <link rel="manifest" href="/pwa/mainmanifest.json">
   <link rel="apple-touch-icon" href="/images/icons/180.png" sizes="180x180">
   <link rel="apple-touch-icon-precomposed" href="/images/icons/180.png">
-  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 <body>
 
-  <nav class="navbar">
-    <div class="navbar-container">
-      <h1 class="navbar-logo">Home</h1>
-      <ul class="navbar-menu">
-        <li class="navbar-item"><a href="/index.html" class="navbar-link active">Inicio</a></li>
-        <li class="navbar-item"><a href="/pages/calendar.html" class="navbar-link">Calendario</a></li>
-        <li class="navbar-item"><a href="/pages/form.html" class="navbar-link">Formulario</a></li>
-        <li class="navbar-item"><a href="/pages/about.html" class="navbar-link">Sobre mí</a></li>
-      </ul>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">🏠 Home</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="/index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="/pages/calendar.html">Calendario</a></li>
+          <li class="nav-item"><a class="nav-link" href="/pages/form.html">Formulario</a></li>
+          <li class="nav-item"><a class="nav-link" href="/pages/about.html">Sobre mí</a></li>
+        </ul>
+      </div>
     </div>
   </nav>
-  <script src="register.js"></script>
+
+  <!-- FORMULARIO -->
+  <div class="container-form">
+    <h4 class="text-center mb-4">Registrar datos</h4>
+
+    <input type="text" id="name" placeholder="Nombre">
+    <input type="email" id="email" placeholder="Correo electrónico">
+    <input type="number" id="age" placeholder="Edad">
+
+    <button id="savebtn" class="btn btn-primary">Guardar</button>
+    <button id="listbtn" class="btn btn-secondary">📋 Listar</button>
+  </div>
+
+  <!-- LISTADO DE USUARIOS -->
+<div class="container mt-4" id="userListContainer">
+  <h4 class="text-center mb-3">Lista de usuarios</h4>
+  <div id="userList" class="row justify-content-center">
+    <!-- Aquí se mostrarán las tarjetas -->
+  </div>
+</div>
+
+
+  <script src="/register.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pouchdb@9.0.0/dist/pouchdb.min.js"></script>
+  <script src="/app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  
 </body>
 </html>

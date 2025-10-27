@@ -152,3 +152,47 @@ textarea:focus {
     width: 90%;
   }
 }
+
+    .navbar-brand, .navbar-nav .nav-link {
+      color: white !important;
+    }
+
+    .navbar-toggler {
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .container-form {
+      max-width: 400px;
+      margin: 60px auto;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 25px;
+    }
+
+    input {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #ced4da;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      border-radius: 8px;
+      margin-top: 5px;
+      padding: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .navbar-nav {
+        text-align: center;
+      }
+
+      .container-form {
+        margin: 30px 15px;
+      }
+    }
+  
