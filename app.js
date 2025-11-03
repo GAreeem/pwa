@@ -53,7 +53,7 @@ async function listarUsuarios() {
 
       card.innerHTML = `
         <div class="card-body ${user.status === 'inactive' ? 'bg-light text-muted' : ''}">
-          <h5 class="card-title">${user.name}</h5>
+          <h5 class="card-title" style="color: #fff;">${user.name}</h5>
           <p class="card-text mb-1"> ${user.email}</p>
           <p class="card-text mb-2"> ${user.age} años</p>
           <span class="badge ${user.status === 'inactive' ? 'bg-secondary' : 'bg-success'}">${user.status}</span>

@@ -2,24 +2,25 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <!-- Define el estilo de la barra de estado (hora, batería) en iOS -->
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  
-  <title>Home</title>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="/register.js"></script>
-  <link rel="stylesheet" type="text/css" href="/style.css">
-  <link rel="manifest" href="/pwa/mainmanifest.json">
+
+  <title>Home</title>
+  <link rel="manifest" href="mainmanifest.json">
   <link rel="apple-touch-icon" href="/images/icons/180.png" sizes="180x180">
   <link rel="apple-touch-icon-precomposed" href="/images/icons/180.png">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/style.css">
+
+  <script src="/register.js"></script>
 </head>
 <body>
 
   <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">🏠 Home</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -37,31 +38,11 @@
     </div>
   </nav>
 
-  <!-- FORMULARIO -->
-  <div class="container-form">
-    <h4 class="text-center mb-4">Registrar datos</h4>
+  <main class="container text-center mt-5">
+    <h1>🌱 Bienvenido a tu PWA</h1>
+    <p class="lead">Funciona incluso sin conexión 🚀</p>
+  </main>
 
-    <input type="text" id="name" placeholder="Nombre">
-    <input type="email" id="email" placeholder="Correo electrónico">
-    <input type="number" id="age" placeholder="Edad">
-
-    <button id="savebtn" class="btn btn-primary">Guardar</button>
-    <button id="listbtn" class="btn btn-secondary">📋 Listar</button>
-  </div>
-
-  <!-- LISTADO DE USUARIOS -->
-<div class="container mt-4" id="userListContainer">
-  <h4 class="text-center mb-3">Lista de usuarios</h4>
-  <div id="userList" class="row justify-content-center">
-    <!-- Aquí se mostrarán las tarjetas -->
-  </div>
-</div>
-
-
-  <script src="/register.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/pouchdb@9.0.0/dist/pouchdb.min.js"></script>
-  <script src="/app.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-  
 </body>
 </html>

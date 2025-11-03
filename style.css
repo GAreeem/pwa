@@ -9,46 +9,12 @@
   z-index: 1000;
 }
 
-.navbar-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.navbar-logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-
-.navbar-menu {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar-link {
-  color: #fff;
-  text-decoration: none;
-  font-size: 1rem;
-  transition: color 0.3s, border-bottom 0.3s;
-}
-
-.navbar-link:hover {
-  color: #00bcd4;
-  border-bottom: 2px solid #00bcd4;
-}
-
 .navbar-link.active {
-  color: #00bcd4;
+  color: #00bcd4 !important;
   border-bottom: 2px solid #00bcd4;
 }
 
-/* ======== FONDO GENERAL ======== */
+/* ======== BODY ======== */
 body {
   background-color: #121212;
   color: #eee;
@@ -57,13 +23,12 @@ body {
   padding: 0;
 }
 
-/* ======== CONTENEDOR ======== */
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 90vh;
-  padding: 40px 20px;
+h5, h2, h3, h4 {
+  color: #00bcd4;
+}
+
+p {
+  color: #fff;
 }
 
 /* ======== CARD ======== */
@@ -71,8 +36,8 @@ body {
   background-color: #1e1e1e;
   border-radius: 12px;
   padding: 30px;
-  width: 100%;
   max-width: 500px;
+  margin: auto;
   box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
@@ -82,36 +47,24 @@ body {
   color: #00bcd4;
 }
 
-/* ======== FORMULARIO ======== */
-.formulario {
-  display: flex;
-  flex-direction: column;
-}
-
-label {
-  margin-bottom: 6px;
-  font-weight: 500;
-}
-
-input,
-textarea {
+/* ======== INPUTS ======== */
+input, textarea {
   background-color: #2a2a2a;
   color: #fff;
   border: 1px solid #444;
   border-radius: 6px;
   padding: 10px;
   margin-bottom: 15px;
+  width: 100%;
   font-size: 1rem;
-  transition: border-color 0.3s;
 }
 
-input:focus,
-textarea:focus {
-  outline: none;
+input:focus {
   border-color: #00bcd4;
+  outline: none;
 }
 
-/* ======== BOTÓN ======== */
+/* ======== BOTONES ======== */
 .btn-enviar {
   background-color: #00bcd4;
   color: #fff;
@@ -128,71 +81,12 @@ textarea:focus {
   transform: translateY(-2px);
 }
 
-/* ======== RESULTADO ======== */
-.resultado {
-  margin-top: 15px;
-  text-align: center;
-  font-weight: bold;
-}
-
 /* ======== RESPONSIVE ======== */
 @media (max-width: 600px) {
-  .navbar-container {
-    flex-direction: column;
-    align-items: flex-start;
+  .navbar-nav {
+    text-align: center;
   }
-
-  .navbar-menu {
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-  }
-
   .card {
     width: 90%;
   }
 }
-
-    .navbar-brand, .navbar-nav .nav-link {
-      color: white !important;
-    }
-
-    .navbar-toggler {
-      border-color: rgba(255, 255, 255, 0.5);
-    }
-
-    .container-form {
-      max-width: 400px;
-      margin: 60px auto;
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      padding: 25px;
-    }
-
-    input {
-      width: 100%;
-      margin-bottom: 15px;
-      padding: 10px 12px;
-      border-radius: 8px;
-      border: 1px solid #ced4da;
-      font-size: 16px;
-    }
-
-    button {
-      width: 100%;
-      border-radius: 8px;
-      margin-top: 5px;
-      padding: 10px;
-    }
-
-    @media (max-width: 768px) {
-      .navbar-nav {
-        text-align: center;
-      }
-
-      .container-form {
-        margin: 30px 15px;
-      }
-    }
-  
