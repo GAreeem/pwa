@@ -18,7 +18,8 @@ const DYNAMIC_ASSET_URLS = [
   'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js',
   'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css',
   'https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css',
-  'https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js'
+  'https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js',
+  'https://cdn.jsdelivr.net/npm/pouchdb@9.0.0/dist/pouchdb.min.js'
 ];
 
 self.addEventListener('install', (event) => {
