@@ -1,6 +1,43 @@
 document.addEventListener('DOMContentLoaded', () => {
   // DB
-  const db = new PouchDB('personas');
+  const localDB = new PouchDB('personas');
+// Cambia esta URL por tu CouchDB / Cloudant / PouchDB Server
+const remoteDB = new PouchDB('https://cdn.jsdelivr.net/npm/pouchdb@9.0.0/dist/pouchdb.min.js/personas');
+
+let syncHandler = null;
+
+// Función para iniciar la sincronización
+function iniciarSync() {
+  if (!navigator.onLine) return; // si no hay internet, no intentes
+
+  console.log('Iniciando sync con servidor remoto...');
+
+  syncHandler = PouchDB.sync(localDB, remoteDB, {
+    live: true,   // sigue sincronizando en tiempo real
+    retry: true   // reintenta si se cae la conexión
+  })
+    .on('change', (info) => {
+      console.log('Cambio replicado:', info);
+      listarUsuarios(); // refresca la UI cuando lleguen cambios nuevos
+    })
+    .on('paused', (err) => {
+      console.log('Sync pausado (probablemente sin cambios o sin red):', err);
+    })
+    .on('active', () => {
+      console.log('Sync reanudado');
+    })
+    .on('error', (err) => {
+      console.error('Error en sync:', err);
+    });
+}
+
+function detenerSync() {
+  if (syncHandler) {
+    syncHandler.cancel();
+    syncHandler = null;
+    console.log('Sync detenido');
+  }
+}
 
   // Elementos del DOM
   const btnsubmit = document.getElementById('savebtn');
@@ -11,39 +48,38 @@ document.addEventListener('DOMContentLoaded', () => {
   const userListContainer = document.getElementById('userListContainer');
 
   // Guardar
-  btnsubmit.addEventListener('click', async (event) => {
-    event.preventDefault();
+btnsubmit.addEventListener('click', async (event) => {
+  event.preventDefault();
 
-    const persona = {
-      _id: new Date().toISOString(),
-      name: inputName.value.trim(),
-      age: inputAge.value.trim(),
-      email: inputEmail.value.trim(),
-      status: 'pending'
-    };
+  const persona = {
+    _id: new Date().toISOString(),
+    name: inputName.value.trim(),
+    age: inputAge.value.trim(),
+    email: inputEmail.value.trim(),
+    status: 'pending'
+  };
 
-    try {
-      const response = await db.put(persona);
-      console.log('Data saved successfully:', response);
+  try {
+    const response = await localDB.put(persona);
+    console.log('Data saved successfully:', response);
 
-      // Limpia campos
-      inputName.value = '';
-      inputEmail.value = '';
-      inputAge.value = '';
+    inputName.value = '';
+    inputEmail.value = '';
+    inputAge.value = '';
 
-      // Feedback
-      const msg = document.getElementById('mensaje-resultado');
-      if (msg) {
-        msg.textContent = '✅ Usuario guardado';
-        setTimeout(() => (msg.textContent = ''), 2000);
-      }
-
-      // Refresca lista
-      listarUsuarios();
-    } catch (error) {
-      console.error('Error saving data:', error);
+    const msg = document.getElementById('mensaje-resultado');
+    if (msg) {
+      msg.textContent = navigator.onLine
+        ? '✅ Usuario guardado (online)'
+        : '✅ Usuario guardado localmente (sin conexión)';
+      setTimeout(() => (msg.textContent = ''), 3000);
     }
-  });
+
+    listarUsuarios();
+  } catch (error) {
+    console.error('Error saving data:', error);
+  }
+});
 
   // Listar usuarios
   btnList.addEventListener('click', (e) => {
@@ -53,7 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   async function listarUsuarios() {
     try {
-      const result = await db.allDocs({ include_docs: true });
+      const result = await localDB.allDocs({ include_docs: true });
+      console.log('Total docs en DB:', result.rows.length);
 
       // Limpia contenedor
       userListContainer.innerHTML = `
@@ -61,6 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
         <div id="userList" class="row justify-content-center"></div>
       `;
       const list = document.getElementById('userList');
+      console.log('Total docs en DB:', result.rows.length);
+      result.rows.forEach(r => console.log(r.doc));
 
       if (!result.rows.length) {
         list.innerHTML = '<p class="text-center text-muted">No hay usuarios registrados.</p>';
@@ -101,15 +140,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Cambiar estado del usuario (activo/inactivo) — se expone globalmente
   window.cambiarEstado = async function (id, nuevoEstado) {
-    try {
-      const user = await db.get(id);
-      user.status = nuevoEstado;
-      await db.put(user);
-      listarUsuarios();
-    } catch (err) {
-      console.error('Error al actualizar el estado:', err);
-    }
-  };
+  try {
+    const user = await localDB.get(id);
+    user.status = nuevoEstado;
+    await localDB.put(user);
+    listarUsuarios();
+  } catch (err) {
+    console.error('Error al actualizar el estado:', err);
+  }
+};
 
   // Mostrar lista automáticamente al cargar
   listarUsuarios();
